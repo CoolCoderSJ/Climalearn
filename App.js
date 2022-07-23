@@ -36,6 +36,7 @@ export default () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         locationNotGranted = true;
+        forceUpdate()
         return;
       }
 
@@ -87,13 +88,12 @@ export default () => {
     {locationNotGranted && moveOn &&
     <Layout style={{flex: 1, justifyContent: 'center', padding: 50}}>
 
-      <Text category="h4" style={{marginBottom: 20}}>
+      <Text category="h5" style={{marginBottom: 20}}>
         Uh oh! You denied the app access to your location. We use your location to show location based predictions and solutions. Your location is stored only on the device.
       </Text>
-
-      <Button onPress={() => {requestLocationPermission();}}>
-        <Text>Allow Location Access</Text>
-      </Button>
+      <Text>Allow location access-</Text>
+      <Text>Android: Press and hold the app, click app info &gt; permissions &gt; location &gt; allow while in use</Text>
+      <Text>iOS: Settindd &gt; Expo Go &gt; Location &gt; Allow</Text>
     </Layout>
     }
     {moveOn && !locationNotGranted &&
