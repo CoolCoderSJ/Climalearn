@@ -4265,6 +4265,15 @@ gensync@^1.0.0-beta.2:
   resolved "https://registry.npmjs.org/gensync/-/gensync-1.0.0-beta.2.tgz"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
 
+geo2zip@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/geo2zip/-/geo2zip-3.0.0.tgz#6ee1b169624b2de16b6b7911fff6dbbdd2bee90a"
+  integrity sha512-VyoG+v1yH2rLZ0JG2MhHM7sSTRP2q8FSNM0pbIzgQq3T01GDC2Ep2SAsPmbIs6+pA8cpEgFWzN6XtIZe0GiN3g==
+  dependencies:
+    sphere-knn "^1.4.0"
+    standardize-geolocation "^4.0.0"
+    us-zips "^2021.11.4"
+
 get-caller-file@^2.0.1:
   version "2.0.5"
   resolved "https://registry.npmjs.org/get-caller-file/-/get-caller-file-2.0.5.tgz"
@@ -7533,6 +7542,11 @@ source-map@^0.7.3:
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.7.4.tgz"
   integrity sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==
 
+sphere-knn@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/sphere-knn/-/sphere-knn-1.4.0.tgz#27f3120cdfade79efbbbc2e147a4b8d21c831537"
+  integrity sha512-sFdsABoSClBxz3DzO2yvHwbbV4zIRvgrIeC1qqWPYzKMtT26xCF/r5xG9Sj7iLFG9GJIt1WnT6VpYaQeRvIzPA==
+
 split-on-first@^1.0.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/split-on-first/-/split-on-first-1.1.0.tgz"
@@ -7575,6 +7589,11 @@ stacktrace-parser@^0.1.3:
   integrity sha512-KJP1OCML99+8fhOHxwwzyWrlUuVX5GQ0ZpJTd1DFXhdkrvg1szxfHhawXUZ3g9TkXORQd4/WG68jMlQZ2p8wlg==
   dependencies:
     type-fest "^0.7.1"
+
+standardize-geolocation@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/standardize-geolocation/-/standardize-geolocation-4.0.1.tgz#819c949c72625a78d70a71030030d017f4529280"
+  integrity sha512-McYDKhwSltj03rUkHzCJJOL1WoXZ4IOKezrEWrsvfwc/306XJiFAsmh2/tcpBWDjxwzJAWkAWbZ6em22jG/cqQ==
 
 static-extend@^0.1.1:
   version "0.1.2"
@@ -8147,6 +8166,11 @@ url-parse@^1.5.9:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+us-zips@^2021.11.4:
+  version "2021.11.4"
+  resolved "https://registry.yarnpkg.com/us-zips/-/us-zips-2021.11.4.tgz#09570e777fa2a1d90042044d710c27f588894274"
+  integrity sha512-WLrTcRHKznNeym5TEzTDEk6uF82zgnl9IJwjD2YKwVpOoZP1qIky5IZYzDwrUkt9imbUjQ6nh0dIMk2/gK+tAA==
 
 "use-subscription@>=1.0.0 <1.6.0":
   version "1.5.1"
