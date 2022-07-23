@@ -29,5 +29,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     }
-  }
+  },
+  "name": "Climalearn",
+  "displayName": "Climalearn"
 }
