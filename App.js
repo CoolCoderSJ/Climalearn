@@ -66,17 +66,6 @@ export default () => {
           forceUpdate()
         }
       })
-
-    if (moveOn) {
-    get("location")
-      .then(val => {
-        if (!val) {
-          locationNotGranted = true
-          forceUpdate()
-        }
-      })
-    }
-
   }, [])
 
   return (
