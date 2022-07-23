@@ -20,11 +20,13 @@ console.disableYellowBox = true;
 const set = async (key, value) => { try { await AsyncStorage.setItem(key, value) } catch (e) { console.log(e) } }
 const setObj = async (key, value) => { try { const jsonValue = JSON.stringify(value); await AsyncStorage.setItem(key, jsonValue) } catch (e) { console.log(e) } }
 const get = async (key) => { try { const value = await AsyncStorage.getItem(key); if (value !== null) { try { return JSON.parse(value) } catch { return value } } } catch (e) { console.log(e) } }
+const delkey = async (key, value) => { try { await AsyncStorage.removeItem(key) } catch (e) { console.log(e) } }
 
 let moveOn = false
 let locationNotGranted = false
 
 let width = Dimensions.get('window').width-100
+
 
 export default () => {
   const [, forceUpdate] = React.useReducer(x => x + 1, 0);
