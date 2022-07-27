@@ -16,7 +16,7 @@ def generate_data(start, end, lat, lon, model):
         else:
             current_end = start + (i+1)*5 - 1
     
-        filename = f"{model}__{current_start}_{current_end}.nc"
+        filename = f"{model}_quartile50_amon_rcp60_conus_{current_start}01-{current_end}12.nc"
         netCDFFiles.append(filename)
     
     winter = []
