@@ -5,7 +5,9 @@ window.onload = function () {
         
         axios.get(`/getData?lat=${lat}&lon=${lon}`)
         .then(function (response) {
-            console.log(response);
+            let data = response.data
+            document.getElementById("spinner").setAttribute("style", "display: none;");
+
         })
         .catch(function (error) {
             console.error(error);
