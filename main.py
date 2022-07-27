@@ -22,7 +22,7 @@ def home():
 def getData():
     args = request.args
     lat = args.get("lat")
-    lon = args.get("lon")
+    lon = (180 + (180 + args.get("lon")))
     
     returnData = {
         "tasmax": {
