@@ -42,24 +42,3 @@ def generate_data(start, end, lat, lon, model):
         summer.append(float(str(model[ind].sel({"lat": lat, "lon": lon}, method="nearest").values)))
 
     return summer, winter
-
-tasmaxSummer, tasmaxWinter = generate_data(start, end, lat, lon, "tasmax")
-
-print("TASMAX")
-print(tasmaxSummer)
-print(tasmaxWinter)
-print("---")
-
-tasminSummer, tasminWinter = generate_data(start, end, lat, lon, "tasmin")
-
-print("TASMIN")
-print(tasminSummer)
-print(tasminWinter)
-print("---")
-
-prSummer, prWinter = generate_data(start, end, lat, lon, "pr")
-
-print("PR")
-print(prSummer)
-print(prWinter)
-print("---")
