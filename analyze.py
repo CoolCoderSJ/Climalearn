@@ -1,11 +1,13 @@
-import matplotlib.pyplot as plt
 import xarray as xr
-import json
+import json, time
+
+now = time.time()
 
 start = 2021
 end = 2099
 lat = ... #redacted for privacy
 lon = ... #redacted for privacy
+
 
 def generate_data(start, end, lat, lon, model):
     netCDFFiles = []
@@ -26,26 +28,27 @@ def generate_data(start, end, lat, lon, model):
     sumQuery = []
 
     ds = xr.open_mfdataset(netCDFFiles, engine="netcdf4")
-    model = ds[model]
+    dsmodel = ds[model]
 
-    for j in range(len(model)):
-        if 12*j <= len(model)-1:
+    for j in range(len(dsmodel)):
+        if 12*j <= len(dsmodel)-1:
             winQuery.append(12*j)
 
-        if 6+12*j <= len(model)-1:
+        if 6+12*j <= len(dsmodel)-1:
             sumQuery.append(6+12*j)
 
     for ind in winQuery:
-        val = float(str(model[ind].sel({"lat": lat, "lon": lon}, method="nearest").values))
+        print(ind)
+        val = float(str(dsmodel[ind].sel({"lat": lat, "lon": lon}, method="nearest").values))
         
         if model != "pr":
             fahrenheit = round(((val - 273.15) * 9/5 + 32), 3)
             winter.append(fahrenheit)
         else:
             winter.append(val)
-        
+
     for ind in sumQuery:
-        val = float(str(model[ind].sel({"lat": lat, "lon": lon}, method="nearest").values))
+        val = float(str(dsmodel[ind].sel({"lat": lat, "lon": lon}, method="nearest").values))
 
         if model != "pr":
             fahrenheit = round(((val - 273.15) * 9/5 + 32), 3)
@@ -56,3 +59,9 @@ def generate_data(start, end, lat, lon, model):
             
 
     return summer, winter
+
+summer, winter = generate_data(start, end, lat, lon, "tasmax")
+print(summer)
+print(winter)
+
+print(f"--- TIME TAKEN {time.time()-now} ---")
