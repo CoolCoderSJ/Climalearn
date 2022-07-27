@@ -21,23 +21,42 @@ def home():
 @app.route("/getData")
 def getData():
     args = request.args
+
     lat = args.get("lat")
     lon = (180 + (180 + args.get("lon")))
     
     returnData = {
         "tasmax": {
             "winter": [],
-            "summer": []
+            "winLabels": [],
+            "summer": [],
+            "sumLabels": []
         },
         "tasmin": {
             "winter": [],
-            "summer": []
+            "winLabels": [],
+            "summer": [],
+            "sumLabels": []
         },
         "pr": {
             "winter": [],
-            "summer": []
+            "winLabels": [],
+            "summer": [],
+            "sumLabels": []
         }
     }
+
+    labels = []
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    for i in range(len(2099-2021+1)):
+        labels.append(months[i]+" "+str(2021+i))
+    
+    returnData['tasmax']['winLabels'] = labels
+    returnData['tasmin']['winLabels'] = labels
+    returnData['pr']['winLabels'] = labels
+    returnData['tasmax']['sumLabels'] = labels
+    returnData['tasmin']['sumLabels'] = labels
+    returnData['pr']['sumLabels'] = labels
 
     winter, summer = generate_data(2021, 2099, lat, lon, "tasmax")
     returnData['tasmax']['winter'] = winter
@@ -58,4 +77,4 @@ def solutions():
     pass
 
 
-app.run()
+app.run(debug=True)
