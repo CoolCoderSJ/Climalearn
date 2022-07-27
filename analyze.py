@@ -36,9 +36,13 @@ def generate_data(start, end, lat, lon, model):
             sumQuery.append(6+12*j)
 
     for ind in winQuery:
-        winter.append(float(str(model[ind].sel({"lat": lat, "lon": lon}, method="nearest").values)))
+        val = float(str(model[ind].sel({"lat": lat, "lon": lon}, method="nearest").values))
+        fahrenheit = round((val - 273.15) * 9/5 + 32, 3)
+        winter.append(fahrenheit)
     
     for ind in sumQuery:
-        summer.append(float(str(model[ind].sel({"lat": lat, "lon": lon}, method="nearest").values)))
+        val = float(str(model[ind].sel({"lat": lat, "lon": lon}, method="nearest").values))
+        fahrenheit = round((val - 273.15) * 9/5 + 32, 3)
+        summer.append(fahrenheit)
 
     return summer, winter

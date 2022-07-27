@@ -18,6 +18,41 @@ def intro():
 def home():
     return render_template("home.html")
 
+@app.route("/getData")
+def getData():
+    args = request.args
+    lat = args.get("lat")
+    lon = args.get("lon")
+    
+    returnData = {
+        "tasmax": {
+            "winter": [],
+            "summer": []
+        },
+        "tasmin": {
+            "winter": [],
+            "summer": []
+        },
+        "pr": {
+            "winter": [],
+            "summer": []
+        }
+    }
+
+    winter, summer = generate_data(2021, 2099, lat, lon, "tasmax")
+    returnData['tasmax']['winter'] = winter
+    returnData['tasmax']['summer'] = summer
+
+    winter, summer = generate_data(2021, 2099, lat, lon, "tasmin")
+    returnData['tasmin']['winter'] = winter
+    returnData['tasmin']['summer'] = summer
+
+    winter, summer = generate_data(2021, 2099, lat, lon, "pr")
+    returnData['pr']['winter'] = winter
+    returnData['pr']['summer'] = summer
+
+    return jsonify(returnData)
+
 @app.route("/solutions")
 def solutions():
     pass
