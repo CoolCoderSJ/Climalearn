@@ -23,7 +23,7 @@ def getData():
     args = request.args
 
     lat = args.get("lat")
-    lon = (180 + (180 + args.get("lon")))
+    lon = str((180 + (180 + float(args.get("lon")))))
     
     returnData = {
         "tasmax": {
