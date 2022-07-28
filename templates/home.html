@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/static/spinkit.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/octoshrimpy/bulma-o-steps/master/bulma-steps.css">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="/static/script.js"></script>
 </head>
@@ -46,6 +48,56 @@
             <div class="sk-bounce-dot"></div>
           </div>
       </center>
+      </div>
+
+      <div class="container mt-6" id="display" style="display: none;">
+        <div class="card">
+          <div class="card-content">
+            <div class="columns">
+              <div class="column flex1">
+                <button class="button is-primary" id="prevbtn" onclick="loadCharts('subtract')" style="display: none;">
+                  <span class="icon">
+                    <i class="fa-solid fa-angle-left"></i>
+                  </span>
+                  <span>Previous</span>
+                </button>
+              </div>
+              <div class="column flex2">
+                <ul class="steps has-gaps">
+                  <li class="steps-segment is-active" id="step0">
+                    <span class="steps-marker"></span>
+                  </li>
+                  <li class="steps-segment" id="step1">
+                    <span class="steps-marker"></span>
+                  </li>
+                  <li class="steps-segment" id="step2">
+                    <span class="steps-marker"></span>
+                  </li>
+                  <li class="steps-segment" id="step3">
+                    <span class="steps-marker"></span>
+                  </li>
+                  <li class="steps-segment" id="step4">
+                    <span class="steps-marker"></span>
+                  </li>
+                  <li class="steps-segment" id="step5">
+                    <span class="steps-marker"></span>
+                  </li>
+                </ul>
+              </div>
+              <div class="column right-align flex1">
+                <button class="button is-primary" onclick="loadCharts('add')" id="nextbtn">
+                  <span>Next</span>
+                  <span class="icon">
+                    <i class="fa-solid fa-angle-right"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <h2 id="text" class="subtitle"></h2>
+            <p id="subtext"></p>
+            <canvas class="mt-4" id="chart" width="300" height="150"></canvas>
+          </div>
+        </div>
       </div>
 </body>
 

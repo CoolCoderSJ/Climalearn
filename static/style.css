@@ -1,3 +1,16 @@
 :root {
     --sk-color: hsl(171, 100%, 41%);
 }
+
+.right-align {
+    display: flex;
+    justify-content: end;
+}
+
+.flex1 {
+    flex: 1
+}
+
+.flex2 {
+    flex: 2
+}

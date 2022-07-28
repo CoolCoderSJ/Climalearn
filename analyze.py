@@ -45,6 +45,7 @@ def generate_data(start, end, lat, lon, model):
             fahrenheit = round(((val - 273.15) * 9/5 + 32), 3)
             winter.append(fahrenheit)
         else:
+            val = round(val*86400, 3)
             winter.append(val)
 
     for ind in sumQuery:
@@ -55,6 +56,7 @@ def generate_data(start, end, lat, lon, model):
             summer.append(fahrenheit)
         
         else:
+            val = round(val*86400, 3)
             summer.append(val)
             
 
