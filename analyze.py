@@ -60,10 +60,4 @@ def generate_data(start, end, lat, lon, model):
             summer.append(val)
             
 
-    return summer, winter
-
-summer, winter = generate_data(start, end, lat, lon, "tasmax")
-print(summer)
-print(winter)
-
-print(f"--- TIME TAKEN {time.time()-now} ---")
+    return winter, summer
