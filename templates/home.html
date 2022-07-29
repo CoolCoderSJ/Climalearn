@@ -18,13 +18,29 @@
 
 <body>
     <section class="hero is-primary is-medium">
-        <div class="hero-body">
+      <div class="hero-head">
+        <header class="navbar">
+          <div class="container">
+            <div id="navbarMenuHeroC" class="navbar-menu">
+              <div class="navbar-end">
+                <span class="navbar-item">
+                  <span id="currLoc" class="mr-4"></span>
+                  <a class="button is-primary is-inverted" onclick="changeLoc()">
+                    <span class="icon">
+                      <i class="fa-solid fa-location-pin"></i>
+                    </span>
+                    <span>Change Location</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+        <div class="hero-body" style="padding: 3rem 3rem">
           <div class="container has-text-centered">
             <p class="title">
               Climalearn
-            </p>
-            <p class="subtitle">
-                Aiming to educate the general population on the effects of climate change.
             </p>
           </div>
         </div>
