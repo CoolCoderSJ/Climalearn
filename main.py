@@ -74,7 +74,7 @@ def getData():
 
 @app.route("/solutions")
 def solutions():
-    pass
+    return render_template("solutions.html")
 
 
 app.run(debug=True)
