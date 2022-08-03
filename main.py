@@ -1,14 +1,9 @@
-from flask import Flask, render_template, request, redirect, flash, jsonify
-from xarray import broadcast
+from flask import Flask, render_template, request, jsonify
 from analyze import generate_data
-from flask_session import Session
+import csv
 
 app = Flask(__name__)
 app.secret_key = "diphMmlucEgfAqCzvnCkDnnShdajfCjtWLKsClfdRlSHjtnDme"
-app.config["SESSION_TYPE"] = "filesystem"
-app.config["SESSION_PERMANENT"] = True
-
-Session(app)
 
 @app.route("/")
 def intro():
@@ -76,5 +71,29 @@ def getData():
 def solutions():
     return render_template("solutions.html")
 
+@app.route("/solutions/sunroof")
+def sunroof():
+    return render_template("sunroof.html")
+
+@app.route("/solutions/sunroof/data/<zipCode>")
+def sunroofdata(zipCode):
+    data = {}
+    with open("project-sunroof-postal_code.csv", newline='', encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+        i = 0
+        for row in reader:
+            i += 1
+            if row['region_name'] == zipCode:
+                data['yearly_sunlight_kwh'] = "{:,}".format(round(float(row['yearly_sunlight_kwh_total']), 3))
+                data['carbon_offset'] = "{:,}".format(round(float(row['carbon_offset_metric_tons']), 3))
+                data['kwh_per_panel'] = "{:,}".format(round(float(row['yearly_sunlight_kwh_total']) / float(row['number_of_panels_total']), 3))
+                break
+        
+        print(i)
+    
+    if data == {}:
+        return {"error": "No data found for that zip code"}
+    else:
+        return jsonify(data)
 
 app.run(debug=True)
