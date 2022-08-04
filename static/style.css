@@ -44,3 +44,9 @@
 .markets-grid .card {
     display: inline-grid;
 }
+
+.markets-grid .card-footer {
+    align-items: flex-end;
+    display: flex;
+    border: 0;
+}
