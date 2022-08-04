@@ -26,3 +26,10 @@
 .media {
     text-align: center;
 }
+
+.centerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

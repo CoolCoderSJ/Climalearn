@@ -71,6 +71,10 @@ def getData():
 def solutions():
     return render_template("solutions.html")
 
+@app.route("/solutions/transit")
+def transit():
+    return render_template("transit.html")
+
 @app.route("/solutions/sunroof")
 def sunroof():
     return render_template("sunroof.html")
