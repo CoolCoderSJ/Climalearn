@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from analyze import generate_data
-import csv
+import csv, requests, json
 
 app = Flask(__name__)
 app.secret_key = "diphMmlucEgfAqCzvnCkDnnShdajfCjtWLKsClfdRlSHjtnDme"
@@ -74,6 +74,32 @@ def solutions():
 @app.route("/solutions/transit")
 def transit():
     return render_template("transit.html")
+
+@app.route("/solutions/markets")
+def markets():
+    return render_template("markets.html")
+
+@app.route("/solutions/markets/data/<lat>/<lon>")
+def marketsData(lat, lon):
+    r = requests.get(f"https://www.usdalocalfoodportal.com/api/get_searchresult_list/?mydata%5Bradius%5D=50&mydata%5Bdirectory%5D=farmersmarket&mydata%5Bx%5D={lon}&mydata%5By%5D={lat}", headers={
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77", 
+        "accept": "text/html",
+        })
+    data = r.json()
+    toReturn = []
+    for elem in data['data']:
+        data = {
+            "image": f"https://www.usdalocalfoodportal.com/mywp/uploadimages/{elem['listing_image']}",
+            "name": elem['listing_name'],
+            "open": elem['brief_desc'].split("Open: ")[1].split("; <br>Available Products")[0],
+            "produce": elem['brief_desc'].split("Available Products: ")[1].replace(";", ", "),
+            "location": elem['location_address'],
+            "location_url": f"https://www.google.com/maps/dir/Your+Location/{elem['location_address']}"
+        }
+        toReturn.append(data)
+    
+    return jsonify(toReturn)
+    
 
 @app.route("/solutions/sunroof")
 def sunroof():

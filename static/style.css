@@ -33,3 +33,14 @@
     align-items: center;
     flex-direction: column;
 }
+
+.markets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.markets-grid .card {
+    display: inline-grid;
+}

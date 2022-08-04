@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Climalearn</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/spinkit.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="/static/markets.js"></script>
+</head>
+
+<body>
+    <section class="hero is-primary is-medium">
+        <div class="hero-body" style="padding: 3rem 3rem">
+            <div class="container has-text-centered">
+                <p class="title">
+                    Climalearn
+                </p>
+            </div>
+        </div>
+
+        <div class="hero-foot">
+            <nav class="tabs is-boxed is-fullwidth">
+                <div class="container">
+                    <ul>
+                        <li><a href="/home">Overview</a></li>
+                        <li><a href="/solutions">What can you do?</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <div class="container mt-6">
+        <a class="button is-primary" href="/solutions">
+            <span class="icon">
+                <i class="fa-solid fa-chevron-left"></i>
+            </span>
+            <span>Back</span>
+        </a>
+    </div>
+
+    <div class="container mt-6" id="spinner">
+        <center>
+          <div class="sk-bounce">
+            <div class="sk-bounce-dot"></div>
+            <div class="sk-bounce-dot"></div>
+          </div>
+      </center>
+      </div>
+
+    <div class="container mt-6 markets-grid" id="data">
+        
+    </div>
+</body>
+
+</html>
