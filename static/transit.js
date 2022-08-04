@@ -22,9 +22,10 @@ window.onload = function() {
 }
 
 function viewRoutes() {
-    let start = document.getElementById("source").value;
-    let end = document.getElementById("dest").value;
-    window.open(`https://www.google.com/maps/dir/${start}/${end}/`)
+    let start = document.getElementById("source").value.replaceAll(" ", "+");
+    let end = document.getElementById("dest").value.replaceAll(" ", "+");
+    let iframeElem = document.getElementById("route");
+    iframeElem.setAttribute("src", `https://www.google.com/maps/embed/v1/directions?key=AIzaSyCBkLo1c_hacAFgLjiwyCFXh2T-eM9qfns&origin=${start}&destination=${end}&mode=transit`);
 }
 
 window.viewRoutes = viewRoutes;
