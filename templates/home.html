@@ -74,12 +74,30 @@
         <div class="card">
           <div class="card-content">
             <div class="columns">
-              <div class="column flex1">
-                <button class="button is-primary" id="prevbtn" onclick="loadCharts('subtract')" style="display: none;">
+              <div class="column flex05">
+                <button class="button is-primary" id="prevbtn" onclick="loadCharts(whereToStart='subtract')" style="display: none;">
                   <span class="icon">
                     <i class="fa-solid fa-angle-left"></i>
                   </span>
                   <span>Previous</span>
+                </button>
+              </div>
+
+              <div class="column selectionBtn">
+                <button class="button is-info" id="maxtemp" onclick="loadCharts(whereToStart = '0')">
+                  <span>Max Temp</span>
+                </button>
+              </div>
+
+              <div class="column selectionBtn">
+                <button class="button is-info is-inverted" id="mintemp" onclick="loadCharts(whereToStart = '2')">
+                  <span>Min Temp</span>
+                </button>
+              </div>
+
+              <div class="column selectionBtn">
+                <button class="button is-info is-inverted" id="precip" onclick="loadCharts(whereToStart = '4')">
+                  <span>Precipitation</span>
                 </button>
               </div>
               <div class="column flex2">
@@ -104,8 +122,8 @@
                   </li>
                 </ul>
               </div>
-              <div class="column right-align flex1">
-                <button class="button is-primary" onclick="loadCharts('add')" id="nextbtn">
+              <div class="column right-align flex05">
+                <button class="button is-primary" onclick="loadCharts(whereToStart='add')" id="nextbtn">
                   <span>Next</span>
                   <span class="icon">
                     <i class="fa-solid fa-angle-right"></i>

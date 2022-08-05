@@ -7,6 +7,9 @@ let chartText = document.getElementById("text");
 let chartSubtext = document.getElementById("subtext");
 let prevBtn = document.getElementById("prevbtn");
 let nextBtn = document.getElementById("nextbtn");
+let maxTempBtn = document.getElementById("maxtemp");
+let minTempBtn = document.getElementById("mintemp");
+let precipBtn = document.getElementById("precip");
 
 function setCookie(cname, cvalue, exdays = 999) {
     let d = new Date();
@@ -132,6 +135,18 @@ function loadCharts(whereToStart = "nochange") {
         chartId--;
     }
 
+    if (whereToStart == "0") {
+        chartId = 0
+    }
+
+    if (whereToStart == "2") {
+        chartId = 2
+    }
+
+    if (whereToStart == "4") {
+        chartId = 4
+    }
+
     if (chartId != 0) {
         prevBtn.setAttribute("style", "display: block;");
     }
@@ -144,6 +159,22 @@ function loadCharts(whereToStart = "nochange") {
     }
     else {
         nextBtn.setAttribute("style", "display: none;");
+    }
+    
+    if (chartId == 0) {
+        maxTempBtn.setAttribute("class", "button is-info");
+        minTempBtn.setAttribute("class", "button is-info is-inverted");
+        precipBtn.setAttribute("class", "button is-info is-inverted");
+    }
+    else if (chartId == 2) {
+        maxTempBtn.setAttribute("class", "button is-info is-inverted");
+        minTempBtn.setAttribute("class", "button is-info");
+        precipBtn.setAttribute("class", "button is-info is-inverted");
+    }
+    else if (chartId == 4) {
+        maxTempBtn.setAttribute("class", "button is-info is-inverted");
+        minTempBtn.setAttribute("class", "button is-info is-inverted");
+        precipBtn.setAttribute("class", "button is-info");
     }
 
     let unitToWrite = dataList[chartId].measure == "Precipitation Amount" ? "mm per day" : "°F"
