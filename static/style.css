@@ -54,3 +54,13 @@
 .solutions.media-content {
     text-align: left;
 }
+
+#map {
+    height: 500px;
+    width: 100%;
+}
+
+#capture {
+    height: 500px;
+    width: 100%;
+}

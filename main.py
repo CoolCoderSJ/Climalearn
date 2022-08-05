@@ -13,6 +13,10 @@ def intro():
 def home():
     return render_template("home.html")
 
+@app.route("/sealevel")
+def sealevel():
+    return render_template("sealevel.html")
+
 @app.route("/getData")
 def getData():
     args = request.args
