@@ -50,3 +50,7 @@
     display: flex;
     border: 0;
 }
+
+.solutions.media-content {
+    text-align: left;
+}
