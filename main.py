@@ -42,9 +42,8 @@ def getData():
     }
 
     labels = []
-    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    for i in range(len(2099-2021+1)):
-        labels.append(months[i]+" "+str(2021+i))
+    for i in range(2099-2021+1):
+        labels.append(str(2021+i))
     
     returnData['tasmax']['winLabels'] = labels
     returnData['tasmin']['winLabels'] = labels
