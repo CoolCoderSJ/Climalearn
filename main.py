@@ -17,6 +17,10 @@ def home():
 def sealevel():
     return render_template("sealevel.html")
 
+@app.route("/drought")
+def drought():
+    return render_template("drought.html")
+
 @app.route("/getData")
 def getData():
     args = request.args
