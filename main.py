@@ -11,7 +11,11 @@ def intro():
 
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    return render_template("overview.html")
+
+@app.route("/air")
+def air():
+    return render_template("air.html")
 
 @app.route("/sealevel")
 def sealevel():
