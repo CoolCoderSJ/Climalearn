@@ -10,6 +10,7 @@ let nextBtn
 let maxTempBtn
 let minTempBtn
 let precipBtn
+let scrollPosition
 
 function setCookie(cname, cvalue, exdays = 999) {
     let d = new Date();
@@ -135,6 +136,8 @@ function getData(lat, lon) {
 
 function loadCharts(whereToStart = "nochange") {
 
+    scrollPosition = document.getElementsByTagName('html')[0].scrollTop
+
     if (chartData) chartData.destroy();
 
     if (whereToStart == "add") {
@@ -229,6 +232,9 @@ function loadCharts(whereToStart = "nochange") {
             }]
         }
     });
+
+    console.log(scrollPosition)
+    window.scrollTo(0, scrollPosition)
 
 }
 
