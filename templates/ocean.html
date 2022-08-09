@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/static/style.css">
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBkLo1c_hacAFgLjiwyCFXh2T-eM9qfns&callback=initMap"></script>
-    <script type="module" src="/static/sealevel.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.2/dist/chart.min.js"></script>
+    <script src="/static/ocean.js"></script>
 </head>
 
 <body>
@@ -26,8 +27,8 @@
             <div class="container">
               <ul>
                 <li><a href="/home">Air Temperature</a></li>
-                <li class="is-active"><a href="#">Sea Levels</a></li>
-                <li><a href="/ocean">Ocean Heat</a></li>
+                <li><a href="/sealevel">Sea Levels</a></li>
+                <li class="is-active"><a href="#">Ocean Heat</a></li>
                 <li><a href="/drought">Droughts</a></li>
                 <li><a href="/solutions">What can you do?</a></li>
               </ul>
@@ -40,10 +41,9 @@
       <div class="container mt-6" style="display: flex; flex-direction: row; justify-content: center;">
         <div class="card" style="width: 100%">
           <div class="card-content">
-            <h2 class="subtitle">Higher sea levels means <strong>damaging flooding ocurring more frequently and more natural disasters</strong>. NOAA predicts that sea levels will rise as much as they did previously in 100 years now in <strong>only 30 years.</strong> (<a href="https://oceanservice.noaa.gov/hazards/sealevelrise/sealevelrise-tech-report.html#:~:text=Sea%20level%20along%20the%20U.S.,years%20(1920%20%2D%202020).">Source</a>) Sea levels usually rise because of climate change. <a href="/solutions">Find out what you can do to help slow this down.</a></h2>
-            <p class="mb-2">The following map shows how much sea levels rise on average.</p>
-            <div id="map"></div>
-            <div id="capture"></div>
+            <h2 class="subtitle">Over the last few years, the amount of heat content that goes into the oceans has been escalating steeply. Heat content is responsible for <a href="/sealevel">sea levels</a> rising and harms marine animals' habitats.</h2>
+            <p class="mb-2">The following shows the rise of heat content in the oceans in zettajoules accumulated by NASA's ECCO project. To learn more about zettajoules, check out <a href="https://www.youtube.com/watch?v=2mxdaLe0zDs">this video</a> by Senator Sheldon Whitehouse from Rhode Island.</p>
+            <canvas class="mt-4" id="chart" width="300" height="150"></canvas>
           </div>
         </div>
       </div>
