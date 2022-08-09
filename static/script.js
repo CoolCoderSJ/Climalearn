@@ -2,14 +2,14 @@ let data;
 let dataList;
 let chartData;
 let chartId = 0;
-const ctx = document.getElementById("chart");
-let chartText = document.getElementById("text");
-let chartSubtext = document.getElementById("subtext");
-let prevBtn = document.getElementById("prevbtn");
-let nextBtn = document.getElementById("nextbtn");
-let maxTempBtn = document.getElementById("maxtemp");
-let minTempBtn = document.getElementById("mintemp");
-let precipBtn = document.getElementById("precip");
+let ctx
+let chartText
+let chartSubtext
+let prevBtn
+let nextBtn
+let maxTempBtn
+let minTempBtn
+let precipBtn
 
 function setCookie(cname, cvalue, exdays = 999) {
     let d = new Date();
@@ -35,6 +35,15 @@ function getCookie(cname) {
 
 
 window.onload = function () {
+    ctx = document.getElementById("chart");
+    chartText = document.getElementById("text");
+    chartSubtext = document.getElementById("subtext");
+    prevBtn = document.getElementById("prevbtn");
+    nextBtn = document.getElementById("nextbtn");
+    maxTempBtn = document.getElementById("maxtemp");
+    minTempBtn = document.getElementById("mintemp");
+    precipBtn = document.getElementById("precip");
+
     let lat = getCookie("lat");
     let lon = getCookie("lon");
     let zip = getCookie("zip");
