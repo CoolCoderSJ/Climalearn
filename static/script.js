@@ -108,6 +108,7 @@ window.onload = function () {
                 setCookie("lat", lat);
                 setCookie("lon", lon);
                 setCookie("zip", result.value[1])
+                document.getElementById("currLoc").innerHTML = "You are currently viewing data for the following zip code: <strong>" + result.value[1] + "</strong>";
                 getData(lat, lon)
             }
         })
