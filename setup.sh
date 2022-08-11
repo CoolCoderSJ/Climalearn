@@ -1,4 +1,4 @@
-pip install flask requests xarray netcdf4 h5netcdf
+pip install flask requests xarray netcdf4 h5netcdf dask
 
 curl --remote-name http://nasanex.s3.amazonaws.com/NEX-DCP30/NEX-quartile/rcp60/mon/atmos/tasmax/r1i1p1/v1.0/CONUS/tasmax_quartile50_amon_rcp60_CONUS_202101-202512.nc
 curl --remote-name http://nasanex.s3.amazonaws.com/NEX-DCP30/NEX-quartile/rcp60/mon/atmos/tasmax/r1i1p1/v1.0/CONUS/tasmax_quartile50_amon_rcp60_CONUS_202601-203012.nc
