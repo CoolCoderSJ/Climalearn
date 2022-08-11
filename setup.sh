@@ -101,5 +101,3 @@ mv pr_quartile50_amon_rcp60_CONUS_208101-208512.nc pr__2081_2085.nc
 mv pr_quartile50_amon_rcp60_CONUS_208601-209012.nc pr__2086_2090.nc
 mv pr_quartile50_amon_rcp60_CONUS_209101-209512.nc pr__2091_2095.nc
 mv pr_quartile50_amon_rcp60_CONUS_209601-209912.nc pr__2096_2099.nc
-
-git clone https://github.com/CoolCoderSJ/Climalearn.git

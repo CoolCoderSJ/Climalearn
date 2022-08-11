@@ -32,10 +32,11 @@ To make Climalearn as trustworthy as possible, I tried making all of my sources 
 - If you are on a UNIX based system like macOS or a Linux distro, you can use the default terminal that came with your system.
 - If you are on Windows, open the Git bash application
 
-- download the setup.sh file from this repo
 - Run the following commands
 ```bash
-setup.sh
+git clone https://github.com/CoolCoderSJ/Climalearn.git
+cd Climalearn
+sh setup.sh
 python main.py
 ```
-This should install the necessary python packages, download all of the necessary files, download the project files, and run the flask server.
+This should download the project files, install the necessary python packages, download all of the necessary files, download the project files, and run the flask server.
