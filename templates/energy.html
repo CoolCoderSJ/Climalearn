@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Climalearn</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/spinkit.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer data-domain="climalearn.loca.lt" src="https://plausible.stunel.io/js/plausible.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    <script src="/static/energy.js"></script>
+</head>
+
+<body>
+    <section class="hero is-primary is-medium">
+      <div class="hero-head">
+        <header class="navbar">
+          <div class="container">
+            <div id="navbarMenuHeroC" class="navbar-menu">
+              <div class="navbar-end">
+                <span class="navbar-item">
+                  <span id="currLoc" class="mr-4"></span>
+                  <a class="button is-primary is-inverted" onclick="changeLoc()">
+                    <span class="icon">
+                      <i class="fa-solid fa-location-pin"></i>
+                    </span>
+                    <span>Change Location</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+        <div class="hero-body" style="padding: 3rem 3rem">
+          <div class="container has-text-centered">
+            <p class="title">
+              Climalearn
+            </p>
+          </div>
+        </div>
+      
+        <div class="hero-foot">
+          <nav class="tabs is-boxed is-fullwidth">
+            <div class="container">
+              <ul>
+                <li><a href="/home">Overview</a></li>
+                <li><a href="/air">Air Temperature</a></li>
+                <li><a href="/sealevel">Sea Levels</a></li>
+                <li><a href="/sealevel">Ocean Heat</a></li>
+                <li><a href="/drought">Droughts</a></li>
+                <li class="is-active"><a href="#">Energy Grid Data</a></li>
+                <li><a href="/solutions">What can you do?</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </section>
+      
+
+      <div class="container mt-6" id="spinner">
+        <center>
+          <div class="sk-bounce">
+            <div class="sk-bounce-dot"></div>
+            <div class="sk-bounce-dot"></div>
+          </div>
+      </center>
+      </div>
+
+      <div class="container mt-6" id="display" style="display: none;">
+        <div class="columns">
+          <div class="column">
+              <div class="card">
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <i class="fa-solid fa-atom fa-3x"></i>
+                      <p class="title is-4">Carbon Intensity</p>
+                    </div>
+                  </div>
+              
+                  <div class="content" id="carbonIntensity">
+                  </div>
+                </div>
+                </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <i class="fa-solid fa-oil-well fa-3x"></i>
+                    <p class="title is-4">Fossil Fuels</p>
+                  </div>
+                </div>
+            
+                <div class="content" id="fossilFuel">
+                </div>
+              </div>
+              </div>
+        </div>
+      </div>
+      </div>
+</body>
+
+</html>

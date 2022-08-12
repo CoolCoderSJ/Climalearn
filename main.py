@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from analyze import generate_data
-import csv, requests, json
+import csv, requests, os
 
 app = Flask(__name__)
 app.secret_key = "diphMmlucEgfAqCzvnCkDnnShdajfCjtWLKsClfdRlSHjtnDme"
@@ -29,6 +29,21 @@ def drought():
 def ocean():
     return render_template("ocean.html")
 
+@app.route("/energy")
+def energy_grid():
+    return render_template("energy.html")
+
+@app.route("/get_energy_data/<lat>/<lon>", defaults={"apikey": "rng6uxFGOv7Z99UQgkRthqhSZnTQ1lMg"})
+@app.route("/get_energy_data/<lat>/<lon>/<apikey>")
+def get_energy_data(lat, lon, apikey):
+    r = requests.get(f"https://api.co2signal.com/v1/latest?lon={lon}&lat={lat}", headers={
+        "auth-token": apikey
+    })
+
+    if r.status_code == 200:
+        return r.json()
+    else:
+        return jsonify({"error": r.json()})
 
 @app.route("/getData")
 def getData():
