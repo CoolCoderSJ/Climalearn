@@ -192,10 +192,11 @@ function loadCharts(whereToStart = "nochange") {
 
     let unitToWrite = dataList[chartId].measure == "Precipitation Amount" ? "mm per day" : "°F"
     let lastVal = dataList[chartId].data[dataList[chartId].data.length - 1]
+    let val2035 = dataList[chartId].data[14]
     let measure = dataList[chartId].measure.toLowerCase()
-    let comparison = dataList[chartId].data[0] > dataList[chartId].data[dataList[chartId].data.length - 1] ? "is projected to drop" : "is projected to rise"
+    let comparison = dataList[chartId].data[0] > dataList[chartId].data[14] ? "is projected to drop" : "is projected to rise"
 
-    let text = `The average <strong>${measure}</strong> during ${dataList[chartId].month} <strong>${comparison}</strong> from ${dataList[chartId].data[0]}${unitToWrite} to an average of <strong>${lastVal}${unitToWrite}</strong> by 2099.`
+    let text = `The average <strong>${measure}</strong> during ${dataList[chartId].month} <strong>${comparison}</strong> from ${dataList[chartId].data[0]}${unitToWrite} to an average of <strong>${val2035}${unitToWrite}</strong> by 2035     and will go up/down to <strong>${lastVal}${unitToWrite}</strong> by 2099.`
     chartText.innerHTML = text;
 
     let part1

@@ -61,6 +61,11 @@
     text-align: left;
 }
 
+#mapContainer {
+    display: flex;
+    gap: 20px;
+}
+
 #map {
     height: 500px;
     width: 100%;

@@ -119,7 +119,7 @@ function getData(lat, lon, apikey="") {
         let co2 = Math.round(respData.carbonIntensity)
         let fossilfuel = Math.round(respData.fossilFuelPercentage)
         document.getElementById("carbonIntensity").innerHTML = `The carbon intensity for your energy grid is <strong>${co2} gCO2eq/kwh</strong>, which means it took about <strong>${co2} grams of carbon dioxide to make 1 killowatt-hour of electricity.</strong>`;
-        document.getElementById("fossilFuel").innerHTML = `The fossil fuel percentage for your energy grid is <strong>${fossilfuel}%</strong>, which means about <strong>${fossilfuel}% of the energy produced was from fossil fuels.</strong>`;
+        document.getElementById("fossilFuel").innerHTML = `The fossil fuel percentage for your energy grid is <strong>${fossilfuel}%</strong>, which means about <strong>${fossilfuel}% of the energy produced was from fossil fuels.</strong> This amount can be significantly reduced if your energy provider switches to a more environment-friendly power source, such as wind turbines, solar panels, or biomass.`;
         document.getElementById("spinner").setAttribute("style", "display: none;");
         document.getElementById("display").setAttribute("style", "display: block;");
     
