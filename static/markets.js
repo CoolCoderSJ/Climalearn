@@ -100,7 +100,7 @@ function getData(lat, lon) {
 
                 let footer = document.createElement("footer")
                 footer.setAttribute("class", "card-footer")
-                footer.innerHTML = `<a class="button is-primary is-fullwidth m-4" href="${response.data[i].location_url}">Get Directions To Market</a>`
+                footer.innerHTML = `<a class="button is-primary is-fullwidth m-4" href="${response.data[i].location_url}" target="blank">Get Directions To Market</a>`
 
                 card.appendChild(footer)
                 dataElem.appendChild(card)
