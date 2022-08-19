@@ -157,4 +157,4 @@ def sunroofdata(zipCode):
     else:
         return jsonify(data)
 
-app.run(debug=True)
+app.run(debug=True, port=5003)
