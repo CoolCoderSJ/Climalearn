@@ -2,6 +2,14 @@
     --sk-color: hsl(171, 100%, 41%);
 }
 
+.dropdown {
+    height: 100%;
+}
+
+.columns {
+    align-items: center;
+}
+
 .right-align {
     display: flex;
     justify-content: end;

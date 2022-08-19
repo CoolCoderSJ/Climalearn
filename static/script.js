@@ -7,9 +7,6 @@ let chartText
 let chartSubtext
 let prevBtn
 let nextBtn
-let maxTempBtn
-let minTempBtn
-let precipBtn
 let scrollPosition
 
 function setCookie(cname, cvalue, exdays = 999) {
@@ -36,6 +33,41 @@ function getCookie(cname) {
 
 
 window.onload = function () {
+    // Get all dropdowns on the page that aren't hoverable.
+    const dropdowns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
+
+    if (dropdowns.length > 0) {
+        // For each dropdown, add event handler to open on click.
+        dropdowns.forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                e.stopPropagation();
+                el.classList.toggle('is-active');
+            });
+        });
+
+        // If user clicks outside dropdown, close it.
+        document.addEventListener('click', function (e) {
+            closeDropdowns();
+        });
+    }
+
+    /*
+     * Close dropdowns by removing `is-active` class.
+     */
+    function closeDropdowns() {
+        dropdowns.forEach(function (el) {
+            el.classList.remove('is-active');
+        });
+    }
+
+    // Close dropdowns if ESC pressed
+    document.addEventListener('keydown', function (event) {
+        let e = event || window.event;
+        if (e.key === 'Esc' || e.key === 'Escape') {
+            closeDropdowns();
+        }
+    });
+
     ctx = document.getElementById("chart");
     chartText = document.getElementById("text");
     chartSubtext = document.getElementById("subtext");
@@ -48,7 +80,7 @@ window.onload = function () {
     let lat = getCookie("lat");
     let lon = getCookie("lon");
     let zip = getCookie("zip");
-    
+
     if (!zip) {
         document.getElementById("currLoc").innerHTML = "You are currently viewing data for your <strong>current location</strong>";
     }
@@ -61,59 +93,59 @@ window.onload = function () {
     }
 
     else {
-    navigator.geolocation.getCurrentPosition((position) => {
-        let lat = position.coords.latitude;
-        let lon = position.coords.longitude;
-        setCookie("lat", lat);
-        setCookie("lon", lon);
-        getData(lat, lon);
+        navigator.geolocation.getCurrentPosition((position) => {
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+            setCookie("lat", lat);
+            setCookie("lon", lon);
+            getData(lat, lon);
 
-    }, (error) => {
-        Swal.fire({
-            title: 'We were unable to get your location. Please input a zip code instead.',
-            icon: 'error',
-            input: 'text',
-            inputAttributes: {
-                autocapitalize: 'off'
-            },
-            showCancelButton: false,
-            confirmButtonText: 'Enter',
-            showLoaderOnConfirm: true,
-            preConfirm: (zip) => {
-                return fetch(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-zc-point&q=${zip}&rows=1&exclude.stusps_code=PR`)
-                    .then(response => response.json())
-                    .then(jsonResp => {
-                        console.log(jsonResp)
+        }, (error) => {
+            Swal.fire({
+                title: 'We were unable to get your location. Please input a zip code instead.',
+                icon: 'error',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: false,
+                confirmButtonText: 'Enter',
+                showLoaderOnConfirm: true,
+                preConfirm: (zip) => {
+                    return fetch(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-zc-point&q=${zip}&rows=1&exclude.stusps_code=PR`)
+                        .then(response => response.json())
+                        .then(jsonResp => {
+                            console.log(jsonResp)
 
-                        if (jsonResp['records'].length == 0) {
-                            throw new Error("Zip code not found.")
-                        }
-                        if (jsonResp['records'][0]['fields']['zip_code'] != zip) {
-                            throw new Error("Zip code not found.")
-                        }
+                            if (jsonResp['records'].length == 0) {
+                                throw new Error("Zip code not found.")
+                            }
+                            if (jsonResp['records'][0]['fields']['zip_code'] != zip) {
+                                throw new Error("Zip code not found.")
+                            }
 
-                        return [jsonResp['records'][0]['fields']['geo_point_2d'], zip];
-                    })
-                    .catch(error => {
-                        Swal.showValidationMessage(
-                            `Request failed: ${error}`
-                        )
-                    })
-            },
-            allowOutsideClick: false
-        }).then((result) => {
-            if (result.isConfirmed) {
-                let lat = result.value[0][0]
-                let lon = result.value[0][1]
-                setCookie("lat", lat);
-                setCookie("lon", lon);
-                setCookie("zip", result.value[1])
-                document.getElementById("currLoc").innerHTML = "You are currently viewing data for the following zip code: <strong>" + result.value[1] + "</strong>";
-                getData(lat, lon)
-            }
-        })
-    });
-}
+                            return [jsonResp['records'][0]['fields']['geo_point_2d'], zip];
+                        })
+                        .catch(error => {
+                            Swal.showValidationMessage(
+                                `Request failed: ${error}`
+                            )
+                        })
+                },
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let lat = result.value[0][0]
+                    let lon = result.value[0][1]
+                    setCookie("lat", lat);
+                    setCookie("lon", lon);
+                    setCookie("zip", result.value[1])
+                    document.getElementById("currLoc").innerHTML = "You are currently viewing data for the following zip code: <strong>" + result.value[1] + "</strong>";
+                    getData(lat, lon)
+                }
+            })
+        });
+    }
 }
 
 function getData(lat, lon) {
@@ -144,21 +176,13 @@ function loadCharts(whereToStart = "nochange") {
     if (whereToStart == "add") {
         chartId++;
     }
-    if (whereToStart == "subtract") {
+    else if (whereToStart == "subtract") {
         chartId--;
     }
-
-    if (whereToStart == "0") {
-        chartId = 0
+    else if (whereToStart != "nochange") {
+        chartId = Number(whereToStart)
     }
 
-    if (whereToStart == "2") {
-        chartId = 2
-    }
-
-    if (whereToStart == "4") {
-        chartId = 4
-    }
 
     if (chartId != 0) {
         prevBtn.setAttribute("style", "display: block;");
@@ -173,21 +197,14 @@ function loadCharts(whereToStart = "nochange") {
     else {
         nextBtn.setAttribute("style", "display: none;");
     }
-    
-    if (chartId == 0) {
-        maxTempBtn.setAttribute("class", "button is-info");
-        minTempBtn.setAttribute("class", "button is-info is-inverted");
-        precipBtn.setAttribute("class", "button is-info is-inverted");
-    }
-    else if (chartId == 2) {
-        maxTempBtn.setAttribute("class", "button is-info is-inverted");
-        minTempBtn.setAttribute("class", "button is-info");
-        precipBtn.setAttribute("class", "button is-info is-inverted");
-    }
-    else if (chartId == 4) {
-        maxTempBtn.setAttribute("class", "button is-info is-inverted");
-        minTempBtn.setAttribute("class", "button is-info is-inverted");
-        precipBtn.setAttribute("class", "button is-info");
+
+    for (let i = 0; i < 6; i++) {
+        if (chartId == i) {
+            document.getElementById(`loc${chartId}`).setAttribute("class", "dropdown-item is-active")
+        }
+        else {
+            document.getElementById(`loc${i}`).setAttribute("class", "dropdown-item")
+        }
     }
 
     let unitToWrite = dataList[chartId].measure == "Precipitation Amount" ? "mm per day" : "°F"
@@ -260,20 +277,20 @@ function changeLoc() {
 
     const swalWithBulmaBtns = Swal.mixin({
         customClass: {
-          confirmButton: 'button is-primary',
-          cancelButton: 'button is-link'
+            confirmButton: 'button is-primary',
+            cancelButton: 'button is-link'
         },
         buttonsStyling: false
-      })
-      
-      swalWithBulmaBtns.fire({
+    })
+
+    swalWithBulmaBtns.fire({
         title: 'Change Location',
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Use current location',
         cancelButtonText: 'Enter zip code',
         reverseButtons: true
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             navigator.geolocation.getCurrentPosition((position) => {
                 let lat = position.coords.latitude;
@@ -283,7 +300,7 @@ function changeLoc() {
                 setCookie("zip", "");
                 document.getElementById("currLoc").innerHTML = "You are currently viewing data for your <strong>current location</strong>";
                 getData(lat, lon);
-        
+
             }, (err) => {
                 Swal.fire({
                     icon: 'error',
@@ -293,7 +310,7 @@ function changeLoc() {
             })
 
         } else if (
-          result.dismiss === Swal.DismissReason.cancel
+            result.dismiss === Swal.DismissReason.cancel
         ) {
             Swal.fire({
                 title: 'Enter ZIP code:',
@@ -310,14 +327,14 @@ function changeLoc() {
                         .then(response => response.json())
                         .then(jsonResp => {
                             console.log(jsonResp)
-    
+
                             if (jsonResp['records'].length == 0) {
                                 throw new Error("Zip code not found.")
                             }
                             if (jsonResp['records'][0]['fields']['zip_code'] != zip) {
                                 throw new Error("Zip code not found.")
                             }
-    
+
                             return [jsonResp['records'][0]['fields']['geo_point_2d'], zip];
                         })
                         .catch(error => {
@@ -340,7 +357,7 @@ function changeLoc() {
                 }
             })
         }
-      })
+    })
 }
 
 window.loadCharts = loadCharts
