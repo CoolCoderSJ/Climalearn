@@ -2,6 +2,15 @@
     --sk-color: hsl(171, 100%, 41%);
 }
 
+.light-highlight {
+    color: white;
+    background: rgba(72, 95, 199, 0.7); 
+}
+
+.light-highlight:hover {
+    background: none;
+}
+
 .dropdown {
     height: 100%;
 }
