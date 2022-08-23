@@ -1,5 +1,4 @@
 self.addEventListener('activate', function(event) {
-    console.log('Claiming control');
     return self.clients.claim();
   });
   
@@ -11,6 +10,5 @@ self.addEventListener('fetch', function(event) {
         status: 418
       })
     );
-    console.log("BLOCKED")
     }
   });
