@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Response
 from analyze import generate_data
 import csv, requests, os
 
@@ -8,6 +8,12 @@ app.secret_key = "diphMmlucEgfAqCzvnCkDnnShdajfCjtWLKsClfdRlSHjtnDme"
 @app.route("/")
 def intro():
     return render_template("intro.html")
+
+@app.route("/sw.js")
+def serve_sw():
+    resp = Response(open("sw.js").read())
+    resp.headers['Content-Type'] = 'text/javascript'
+    return resp
 
 @app.route("/home")
 def home():
