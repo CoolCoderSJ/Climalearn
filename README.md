@@ -1,13 +1,11 @@
 # Climalearn
  An attempt to educate the general population on the devastating effects of climate change and help them understand what they can do to help stop these effects.
 
-> A full project explanation (page by page) can be found [here](https://example.com)
-
 ## Introduction
 Climate change is a major issue in the world today. It is a global issue and affects everyone. Over the past few years, the world has started to experience a huge increase in temperature, and the effects of this increase are becoming more and more severe. The effects of climate change are not just the temperature, but also sea levels rising, and other environmental changes. The main reason for changes rising in severity is because the general population is not aware of the effects of climate change, or they choose to not do anything about it. 
 
 ## Objective
-The objective of this project is to educate the general population on the devastating effects of climate change and help them understand what they can do to help stop these effects.
+The objective of this project is to educate the general population on the devastating effects of climate change and help them understand what they can do to help stop these effects. To do this, Climalearn uses data from many government websites to make information available and easy to understand to everyone.
 
 ## Resources
 To make Climalearn as trustworthy as possible, I tried making all of my sources as trustworthy as possible as well. I have used the following resources to help me make this project:
